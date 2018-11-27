@@ -7,8 +7,9 @@ case class Work1(data: List[Int], option: MyOption) {
   def filterHalf: Work1 = {
     option match {
       case OptionA => {
-        val oddFilteredData = data.zipWithIndex.filter(_._2 % 2 == 0).map(_._1)
-        this.copy(data = oddFilteredData)
+        val secondFiltered = data.zipWithIndex.filterNot(_._2 % 4 == 1)
+        val filteredData = secondFiltered.filter(_._2 % 4 == 2).map(_._1)
+        this.copy(data = filteredData)
       }
       case OptionB => {
         val evenFilteredData = data.zipWithIndex.filter(_._2 % 2 == 1).map(_._1)
@@ -21,7 +22,7 @@ case class Work1(data: List[Int], option: MyOption) {
   def transData: Work1 = {
     option match {
       case OptionA => {
-        val oneAddedData = data.map(_ + 1)
+        val oneAddedData = data.map(_ + 3)
         this.copy(data = oneAddedData)
       }
       case OptionB => {

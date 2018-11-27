@@ -18,4 +18,18 @@ case class Work1(data: List[Int], option: MyOption) {
     }
   }
 
+  def transData: Work1 = {
+    option match {
+      case OptionA => {
+        val oneAddedData = data.map(_ + 1)
+        this.copy(data = oneAddedData)
+      }
+      case OptionB => {
+        val twoAddedData = data.map(_ + 2)
+        this.copy(data = twoAddedData)
+      }
+      case _ => this
+    }
+  }
+
 }

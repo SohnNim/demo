@@ -16,4 +16,18 @@ case class Work2(data: List[String], option: MyOption) {
       case _ => this
     }
   }
+
+  def transData: Work2 = {
+    option match {
+      case OptionA => {
+        val dupData = data.map(alpha => alpha + alpha)
+        this.copy(data = dupData)
+      }
+      case OptionB => {
+        val dupWithDelimiterData = data.map(alpha => alpha + ":" + alpha)
+        this.copy(data = dupWithDelimiterData)
+      }
+      case _ => this
+    }
+  }
 }

@@ -13,8 +13,9 @@ case class Work1(data: List[Int], option: MyOption) {
         this.copy(data = filteredData)
       }
       case OptionB => {
-        val evenFilteredData = data.zipWithIndex.filter(_._2 % 2 == 1).map(_._1)
-        this.copy(data = evenFilteredData)
+        val thirdFiltered = data.zipWithIndex.filterNot(_._2 % 4 == 2)
+        val fourthFilteredData = thirdFiltered.filterNot(_._2 % 4 == 3).map(_._1)
+        this.copy(data = fourthFilteredData)
       }
       case _ => this
     }
@@ -27,8 +28,8 @@ case class Work1(data: List[Int], option: MyOption) {
         this.copy(data = oneAddedData)
       }
       case OptionB => {
-        val twoAddedData = data.map(_ + 2)
-        this.copy(data = twoAddedData)
+        val threeAddedData = data.map(_ + 3)
+        this.copy(data = threeAddedData)
       }
       case _ => this
     }

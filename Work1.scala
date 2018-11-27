@@ -7,13 +7,15 @@ case class Work1(data: List[Int], option: MyOption) {
   def filterHalf: Work1 = {
     option match {
       case OptionA => {
-        val oddFilteredData = data.zipWithIndex.filter(_._2 % 2 == 0).map(_._1)
-        this.copy(data = oddFilteredData)
+        val secondFiltered = data.zipWithIndex.filterNot(_._2 % 4 == 1)
+        val lastFiltered = secondFiltered.filterNot(_._2 % 4 == 3)
+        val filteredData = lastFiltered.filter(_._2 % 4 == 2).map(_._1)
+        this.copy(data = filteredData)
       }
       case OptionB => {
-        val secondFiltered = data.zipWithIndex.filterNot(_._2 % 4 == 1)
-        val thirdFilteredData = secondFiltered.filterNot(_._2 % 4 == 2).map(_._1)
-        this.copy(data = thirdFilteredData)
+        val thirdFiltered = data.zipWithIndex.filterNot(_._2 % 4 == 2)
+        val fourthFilteredData = thirdFiltered.filterNot(_._2 % 4 == 3).map(_._1)
+        this.copy(data = fourthFilteredData)
       }
       case _ => this
     }

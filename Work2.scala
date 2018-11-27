@@ -6,8 +6,10 @@ case class Work2(data: List[String], option: MyOption) {
   def filterHalf: Work2 = {
     option match {
       case OptionA => {
-        val oddFilteredData = data.zipWithIndex.filter(_._2 % 2 == 0).map(_._1)
-        this.copy(data = oddFilteredData)
+        val secondFiltered = data.zipWithIndex.filterNot(_._2 % 4 == 1)
+        val lastFiltered = secondFiltered.filterNot(_._2 % 4 == 3)
+        val filteredData = lastFiltered.filter(_._2 % 4 == 2).map(_._1)
+        this.copy(data = filteredData)
       }
       case OptionB => {
         val filteredData = data.zipWithIndex.filterNot(_._2 % 4 == 0).map(_._1)
@@ -20,11 +22,11 @@ case class Work2(data: List[String], option: MyOption) {
   def transData: Work2 = {
     option match {
       case OptionA => {
-        val dupData = data.map(alpha => alpha + alpha)
-        this.copy(data = dupData)
+        val oneDupData = data.map(alpha => alpha + alpha)
+        this.copy(data = oneDupData)
       }
       case OptionB => {
-        val dupWithDelimiterData = data.map(alpha => alpha + ":" + alpha)
+        val dupWithDelimiterData = data.map(alpha => alpha + "::" + alpha)
         this.copy(data = dupWithDelimiterData)
       }
       case _ => this

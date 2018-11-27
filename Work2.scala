@@ -19,6 +19,7 @@ case class Work2(data: List[String], option: MyOption) {
     }
   }
 
+
   def transData: Work2 = {
     option match {
       case OptionA => {

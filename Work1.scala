@@ -34,5 +34,4 @@ case class Work1(data: List[Int], option: MyOption) {
       case _ => this
     }
   }
-
 }
